@@ -27,7 +27,7 @@ def index():
         return markdown.markdown(content)
 
 
-# post and get for api
+# post and get for api useing flask_restful and get_json
 class DeviceList(Resource):
     def get(self):
         shelf = get_db()
