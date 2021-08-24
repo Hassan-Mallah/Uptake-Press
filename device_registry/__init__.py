@@ -27,6 +27,7 @@ def index():
         return markdown.markdown(content)
 
 
+# post and get for api
 class DeviceList(Resource):
     def get(self):
         shelf = get_db()
