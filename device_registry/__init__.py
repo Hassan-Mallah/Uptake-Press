@@ -27,6 +27,7 @@ def index():
         return markdown.markdown(content)
 
 
+# update according to this example: https://flask-restful.readthedocs.io/en/latest/quickstart.html#full-example
 # post and get for api useing flask_restful and get_json
 class DeviceList(Resource):
     def get(self):
