@@ -2,19 +2,15 @@ from flask import Flask, g, request
 import os
 import markdown
 import shelve
-from flask_restful import Resource, Api
+from flask_restful import Resource, Api, reqparse
 
 # Create Flask App - instance of Flask
 app = Flask(__name__)
 
 # Create the API
 api = Api(app)
-
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = shelve.open("devices.db")
-    return db
+DEVICES = {}  # our DB :)
+parser = reqparse.RequestParser()
 
 
 @app.route("/")
@@ -31,21 +27,12 @@ def index():
 # post and get for api useing flask_restful and get_json
 class DeviceList(Resource):
     def get(self):
-        shelf = get_db()
-        keys = list(shelf.keys())
-
-        devices = []
-
-        for key in keys:
-            devices.append(shelf[key])
-
-        return {'message': 'Success', 'data': devices}, 200
+        return {'message': 'Success', 'data': DEVICES}, 200
 
     def post(self):
-        args = request.get_json(force=True)
+        args = parser.parse_args()
 
-        shelf = get_db()
-        shelf[args['identifier']] = args
+        DEVICES[args['identifier']] = args
 
         return {'message': 'Device registered', 'data': args}, 20
 
