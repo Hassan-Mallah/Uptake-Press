@@ -1,5 +1,6 @@
 # Uptake-Press
 Flask API
+updated from youtube video: https://www.youtube.com/watch?v=4T5Gnrmzjak
 
 
 # Device Registry Service
