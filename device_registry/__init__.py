@@ -11,6 +11,8 @@ app = Flask(__name__)
 api = Api(app)
 DEVICES = {}  # our DB :)
 parser = reqparse.RequestParser()
+parser.add_argument('identifier')  # add a variable to catch from request to task variable
+parser.add_argument('name')  # add a variable to catch from request to task variable
 
 
 @app.route("/")
